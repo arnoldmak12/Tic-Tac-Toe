@@ -1,9 +1,9 @@
 public class Square {
 
-    private Piece piece = new Piece();
+    private Piece piece;
 
     public Square() {
-
+    	piece = new PieceX();
     }
 
 }
