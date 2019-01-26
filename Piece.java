@@ -4,8 +4,10 @@ public abstract class Piece {
     private int x;
     private int y;
 
-    public Piece() {
-
+    public Piece(int X,int Y, String s) {
+        x = X;
+        y = Y;
+        side = s;
     }
 
     private void setSide(String s) {
