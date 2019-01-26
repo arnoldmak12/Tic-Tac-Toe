@@ -7,6 +7,6 @@ public class Player {
     }
 
     public Square makeMove() {
-
+        return new Square();
     }
 }
