@@ -4,31 +4,9 @@ public class PieceO extends Piece {
     private int x;
     private int y;
 
-    public PieceO() {
-
+    public PieceO(int X, int Y, String Side) {
+    	super(X,Y,Side);
     }
 
-    private void setSide(String s) {
-        this.side = s;
-    }
-
-    private void setX(int X) {
-        this.x = X;
-    }
-
-    private void setY(int Y) {
-        this.y = Y;
-    }
-
-    private String getSide() {
-        return this.side;
-    }
-
-    private int getX() {
-        return this.x;
-    }
-
-    private int getY() {
-        return this.y;
-    }
+    
 }
