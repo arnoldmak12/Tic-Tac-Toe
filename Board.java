@@ -2,14 +2,14 @@ import java.util.*;
 
 public class Board {
 
-    private Square[3][3] squares = new Square();
+    private Square[][] squares;
 
     public Board(){
-       Square[3][3] squares = new Square();
+       squares = new Square[3][3];
     }
 
     public boolean isValid(Square s) {
-
+    	return false;
     }
 
     public void movePiece() {
