@@ -11,7 +11,7 @@ public class Board {
      * @param int c, col of square location
      * @return true for empty square, false for square with piece
      */
-    public boolean isValid(int r, int c) {
+    public boolean isEmpty(int r, int c) {
         return squares[r][c].getPiece() == null;
     }
 
