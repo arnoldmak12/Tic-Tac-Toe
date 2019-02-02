@@ -1,19 +1,27 @@
 public abstract class Piece {
 
-    private int x;
-    private int y;
+    
+    private int r;
+    private int c;
 
-    public Piece(int X, int Y) {
-        this.x = X;
-        this.y = Y;
+    public Piece(int R,int C) {
+        r = R;
+        c = C;
     }
-
-    public int getX() {
-        return this.x;
+   
+   /**Returns the row of the piece
+    *
+    * @return row number of piece
+    */
+    public int getR() {
+        return this.r;
     }
-
-    public int getY() {
-        return this.y;
+    /**Returns the column of the piece
+    *
+    * @return column number of piece
+    */
+    public int getC() {
+        return this.c;
     }
 }
 
