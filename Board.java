@@ -10,9 +10,9 @@ public class Board {
      * Checks if square is empty or not
      * 
      * @param r
-     *            row of square location
+     *            either 0, 1, or 2. Represents the row of the 2D array.
      * @param c
-     *            col of square location
+     *            either 0, 1, or 2. Represents the column of the 2D array
      * @return true for empty square
      * @return false for square with piece
      */
