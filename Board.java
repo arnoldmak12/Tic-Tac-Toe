@@ -6,7 +6,7 @@ public class Board {
         this.squares = new Square[3][3];
     }
 
-    /* checks if square is empty or not
+    /**checks if square is empty or not
      * @param int r, row of square location
      * @param int c, col of square location
      * @return true for empty square, false for square with piece
