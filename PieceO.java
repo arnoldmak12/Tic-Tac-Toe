@@ -1,9 +1,10 @@
 public class PieceO extends Piece {
 
-    private int x;
-    private int y;
+    private int r;
+    private int c;
 
-    public PieceO(int X, int Y) {
-        super(X, Y);
+    public PieceO(int R, int C) {
+        super(R, C);
     }
 }
+
