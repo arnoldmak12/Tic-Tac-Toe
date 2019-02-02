@@ -1,18 +1,16 @@
-import java.util.*;
-
 public class Board {
 
     private Square[][] squares;
 
-    public Board(){
-       squares = new Square[3][3];
+    public Board() {
+        this.squares = new Square[3][3];
     }
 
     public boolean isValid(Square s) {
-    	return false;
+        return false;
     }
 
-    public void movePiece() {
+    public void movePiece(Piece piece, int x, int y) {
 
     }
 }
