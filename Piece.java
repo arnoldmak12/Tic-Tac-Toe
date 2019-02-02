@@ -8,11 +8,12 @@ public abstract class Piece {
         this.y = Y;
     }
 
-    private int getX() {
+    public int getX() {
         return this.x;
     }
 
-    private int getY() {
+    public int getY() {
         return this.y;
     }
 }
+
