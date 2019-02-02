@@ -1,17 +1,11 @@
 public abstract class Piece {
 
-    private String side;
     private int x;
     private int y;
 
-    public Piece(int X, int Y, String s) {
+    public Piece(int X, int Y) {
         this.x = X;
         this.y = Y;
-        this.side = s;
-    }
-
-    private String getSide() {
-        return this.side;
     }
 
     private int getX() {
