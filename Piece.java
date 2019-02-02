@@ -14,14 +14,14 @@ public abstract class Piece {
     * @return row number of piece
     */
     public int getR() {
-        return this.r;
+        return r;
     }
     /**Returns the column of the piece
     *
     * @return column number of piece
     */
     public int getC() {
-        return this.c;
+        return c;
     }
 }
 
