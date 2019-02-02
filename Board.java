@@ -15,9 +15,10 @@ public class Board {
         return squares[r][c].getPiece() == null;
     }
 
-    /*piece will either be piece x or piece o.
-     * int r is either 0, 1, or 2. Represents the row of the 2D array.
-     * int c is either 0, 1, or 2. Represents the column of the 2D array
+    /**Places piece with the given type at the given square.
+     * @param piece will either be piece x or piece o.
+     * @param int r is either 0, 1, or 2. Represents the row of the 2D array.
+     * @param int c is either 0, 1, or 2. Represents the column of the 2D array
      */
     public void movePiece(Piece piece, int r, int c) {
     	squares[r][c].setPiece(piece);
