@@ -6,11 +6,11 @@ public class Square {
         this.piece = null;
     }
 
-    private void setPiece(Piece p) {
+    public void setPiece(Piece p) {
         this.piece = p;
     }
 
-    private Piece getPiece() {
+    public Piece getPiece() {
         return this.piece;
     }
 }
