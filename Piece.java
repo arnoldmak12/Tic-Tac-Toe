@@ -4,22 +4,10 @@ public abstract class Piece {
     private int x;
     private int y;
 
-    public Piece(int X,int Y, String s) {
-        x = X;
-        y = Y;
-        side = s;
-    }
-
-    private void setSide(String s) {
-        this.side = s;
-    }
-
-    private void setX(int X) {
+    public Piece(int X, int Y, String s) {
         this.x = X;
-    }
-
-    private void setY(int Y) {
         this.y = Y;
+        this.side = s;
     }
 
     private String getSide() {
@@ -34,4 +22,3 @@ public abstract class Piece {
         return this.y;
     }
 }
-
