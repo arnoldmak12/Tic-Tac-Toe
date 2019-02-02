@@ -3,14 +3,14 @@ public class Square {
     private Piece piece;
 
     public Square() {
-        this.piece = null;
+        piece = null;
     }
 
     public void setPiece(Piece p) {
-        this.piece = p;
+        piece = p;
     }
 
     public Piece getPiece() {
-        return this.piece;
+        return piece;
     }
 }
