@@ -11,17 +11,13 @@ public class TicTacToeGame {
     private Map moveHistory;
 
     public TicTacToeGame() {
-        this.board = new Board();
-        this.player1 = new Human();
-        this.player2 = new Computer();
-        this.moveHistory = new HashMap();
+        board = new Board();
+        player1 = new Human();
+        player2 = new Computer();
+        moveHistory = new HashMap();
     }
 
-    private static void startGame() {
-
-    }
-
-    private static Player annouceWinner() {
+    private Player annouceWinner() {
         return new Player();
     }
 
@@ -29,3 +25,4 @@ public class TicTacToeGame {
 
     }
 }
+
