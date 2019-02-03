@@ -3,18 +3,8 @@ import java.util.Map;
 
 public class TicTacToeGame {
 
-    private Board board;
-
-    private Player player1;
-    private Player player2;
-
-    private Map moveHistory;
-
     public TicTacToeGame() {
-        board = new Board();
-        player1 = new Human();
-        player2 = new Computer();
-        moveHistory = new HashMap();
+        
     }
 
     private Player annouceWinner() {
@@ -22,7 +12,11 @@ public class TicTacToeGame {
     }
 
     public static void main(String[] args) {
-
+    	Board board = new Board();
+        Player player1 = new Human();
+        Player player2 = new Computer();
+    	Map moveHistory = new HashMap();
+    	Piece o = new PieceO();
+    	board.movePiece(o, 1, 1);
     }
 }
-
