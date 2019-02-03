@@ -40,36 +40,84 @@ public class Board {
         squares[r][c].setPiece(piece);
     }
     
-    public String checkResult() {
-        String result = "";
-        boolean win = false;
-
-        win = checkWin(0, 0, 0, "horizontal");
-
-        return result;
+    /**
+     * Checks status of tic tac toe board
+     * 
+     * @return String that corresponds to status on the board. "Not Done" is not done, "Tie" is tie, "O" is O wins, and "X" is X wins.
+     */
+    public String checkResult()
+    {
+    	String result = "Not Done";
+    	int win = 0;
+    	win = status();
+    	if(win == 3)
+    	{
+    		result = "O";
+    	}
+    	else if(win == 6)
+    	{
+    		result = "X";
+    	}
+    	else if(win == 1)
+    	{
+    		result= "Tie";
+    	}
+    	return result;
     }
-
-    private boolean checkWin(int x, int y, int checked, String direction) {
-
-        if (checked == 3) {
-            return true;
-        }
-        if (x < 0 || x > 2 || y < 0 || y > 2 || squares[x][y] == null) {
-            return false;
-        }
-
-        if (direction.equals("horizontal")) {
-            if (squares[x][y + 1] == null) {
-                return false;
-            } else if (squares[x][y].equals(squares[x][y + 1])) {
-                checkWin(x, y + 1, checked + 1, "horizontal");
-            } else if (x == 2) {
-                checkWin(x + 1, y + 1, checked + 1, "horizontal");
-            } else {
-                checkWin(0, 0, checked + 1, "vertical");
-            }
-
-        }
-        return false;
-    }
+    
+    /**
+     * Checks status of tic tac toe board
+     * 
+     * @return int that corresponds to status on the board. 0 is not done, 1 is tie, 3 is O wins, and 6 is X wins.
+     */
+    private int status()
+    {
+    	int[][] results = new int[3][3];
+    	Piece p = new PieceO();
+    	int sum = 0;
+    	for(int i = 0; i < 3; i++)
+    	{
+    		for(int k = 0; k < 3; k++)
+    		{
+    			if(isEmpty(i,k))
+    			{
+    				results[i][k] = 0;
+    			}
+    			else if(squares[i][k].getPiece().getClass().equals(p.getClass()))
+    			{
+    				results[i][k] = 1;
+    				sum +=1;
+    			}
+    			else
+    			{
+    				results[i][k] = 2;
+    				sum +=2;
+    			}
+    		}
+    	}
+    	for(int j = 0; j < 3; j++)
+    	{
+    		if(results[0][j] == results[1][j] && results[0][j] == results[2][j] && results[0][j]!= 0)
+    		{
+    			return results[0][j]*3;
+    		}
+    		else if(results[j][0] == results[j][1] && results[j][0] == results[j][2] && results[j][0]!= 0)
+    		{
+    			return results[j][0]*3;
+    		}
+    	}
+    	if((results[0][0] == results[1][1] && results[0][0] == results[2][2] && results[0][0]!= 0))
+    	{
+    		return results[0][0]*3;
+    	}
+    	else if(results[2][0] == results[1][1] && results[2][0] == results[0][2] && results[2][0]!= 0)
+    	{
+    		return results[2][0]*3;
+    	}
+    	if(sum == 14)
+    	{
+    		return 1;
+    	}
+    	return 0;
+    }    	
 }
