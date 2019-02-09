@@ -120,4 +120,25 @@ public class Board {
     	}
     	return 0;
     }    	
+
+	public void showBoard() {
+			for(int i = 0; i < squares.length; i++) {
+				for(int j = 0; j < squares[0].length; j++) {
+					if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceX().getClass())) {
+						System.out.print("X\t");
+					}
+					else if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceO().getClass())) {
+						System.out.print("O\t");
+					}
+					else {
+						System.out.print("\t");
+					}
+				}
+				System.out.println();
+			}
+			System.out.println("\n");
+		}
+
 }
+
+	
