@@ -58,7 +58,7 @@ public class gameView extends javax.swing.JFrame {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setIcon(new ImageIcon("D:\\TicTacToe\\Tic-Tac-Toe Grid.png"));
+		lblNewLabel.setIcon(new ImageIcon("bin\\Tic-Tac-Toe Grid.png"));
 		lblNewLabel.setBounds(0, 0, 600, 600);
 		panel.add(lblNewLabel);
 		
