@@ -24,6 +24,7 @@ public class gameView extends javax.swing.JFrame {
 	private JPanel contentPane;
 	private int[] inputMove;
 	private JLabel[][] squares;
+	private JPanel panel;
 
 	/**
 	 * Launch the application.
@@ -58,7 +59,7 @@ public class gameView extends javax.swing.JFrame {
 		
 		inputMove = new int[2];
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.BLACK);
 		panel.setBounds(300, 140, 600, 600);
 		contentPane.add(panel);
@@ -229,6 +230,14 @@ public class gameView extends javax.swing.JFrame {
 		{
 			System.out.println("Hey buddy you set an invalid");
 		}
+	}
+	public void setWinner(String p)
+	{
+		JLabel winner = new JLabel("");
+		winner.setForeground(Color.BLACK);
+		winner.setIcon(new ImageIcon(this.getClass().getResource(p)));
+		winner.setBounds(0, 0, 600, 600);
+		panel.add(winner);
 	}
 	
 }
