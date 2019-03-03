@@ -8,17 +8,20 @@ public class TicTacToeGame {
         
     }
 
-    private Player annouceWinner() {
+    /*private Player annouceWinner() {
         return new Player();
-    }
+    }*/
 
     public static void main(String[] args) {
     	Board board = new Board();
-        Player player1 = new Human();
-        Player player2 = new Computer();
-    	Map<Player, List<int[]>> moveHistory = new HashMap<Player, List<int[]>>();
+        Map<Player, List<int[]>> moveHistory = new HashMap<Player, List<int[]>>();
     	Piece o = new PieceO();
     	int[] move = new int[2];
+    	gameView frame = new gameView();
+    	Player player1 = new Human(frame);
+    	Player player2 = new Human(frame);
+		frame.setVisible(true);
+		frame.setMove(-1,  -1);
     	
     	while(board.checkResult().equals("Not Done")) {
     		
@@ -28,8 +31,8 @@ public class TicTacToeGame {
     			move = player1.makeMove();
     		}
     		board.movePiece(new PieceX(), move[0], move[1]); 		
-    		board.showBoard();
-    		
+    		frame.setPNG(move[0], move[1], "PieceX.png");
+    		frame.setMove(-1, -1);
     		if(!board.checkResult().equals("Not Done")) {
     			break;
     		}
@@ -40,7 +43,8 @@ public class TicTacToeGame {
     			move = player2.makeMove();
     		}
     		board.movePiece(new PieceO(), move[0], move[1]);    		
-    		board.showBoard();   		
+    		frame.setPNG(move[0], move[1], "PieceO.png");
+    		frame.setMove(-1, -1);
     	}
     	
     	System.out.println(board.checkResult());
