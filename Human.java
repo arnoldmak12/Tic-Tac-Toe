@@ -1,32 +1,23 @@
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+public class Human implements Player {
+	private gameView frame;
 
-public class Human extends Player {
-
-    public Human() {
+    public Human(gameView frame1) {
+    	frame = frame1;
     	
     }
     
-    private class MyMouseAdapter extends MouseAdapter {
-    	
-        @Override
-        public void mousePressed(MouseEvent e) {
-        	
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        	
-        }
-
-        public void updateLocation(MouseEvent e) {
-        	
-           
-        }
+    public int[] makeMove() {
+    	boolean waiting = true;
+    	int[] move = new int[2];
+    	while(waiting)
+    	{
+    		System.out.print("");
+    		if(frame.getMove()[0] != -1 && frame.getMove()[1] != -1)
+    		{
+    			move = frame.getMove();
+    			waiting = false;
+    		}
+    	}
+        return move;
     }
 }
