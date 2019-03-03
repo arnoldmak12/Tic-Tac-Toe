@@ -48,5 +48,13 @@ public class TicTacToeGame {
     	}
     	
     	System.out.println(board.checkResult());
+    	if(board.checkResult().equals("O"))
+    	{
+    		frame.setWinner("winO.png");
+    	}
+    	else if(board.checkResult().equals("X"))
+    	{
+    		frame.setWinner("winX.png");
+    	}
     }
 }
