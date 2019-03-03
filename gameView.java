@@ -22,11 +22,13 @@ import java.awt.event.MouseEvent;
 public class gameView extends javax.swing.JFrame {
 
 	private JPanel contentPane;
+	private int[] inputMove;
+	private JLabel[][] squares;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,7 +39,7 @@ public class gameView extends javax.swing.JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -51,6 +53,10 @@ public class gameView extends javax.swing.JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		squares = new JLabel[3][3];
+		
+		inputMove = new int[2];
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
@@ -68,7 +74,7 @@ public class gameView extends javax.swing.JFrame {
 		square00.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				square00.setIcon(new ImageIcon(this.getClass().getResource("PieceO.png")));
+				setMove(0,0);
 			}
 		});
 		square00.setBounds(0, 0, 174, 180);
@@ -78,7 +84,7 @@ public class gameView extends javax.swing.JFrame {
 		square01.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square01.setIcon(new ImageIcon(this.getClass().getResource("PieceO.png")));
+				setMove(0, 1);
 			}
 		});
 		square01.setBounds(214, 0, 174, 180);
@@ -88,7 +94,7 @@ public class gameView extends javax.swing.JFrame {
 		square02.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square02.setIcon(new ImageIcon(this.getClass().getResource("PieceX.png")));
+				setMove(0, 2);
 			}
 		});
 		square02.setBounds(426, 0, 174, 180);
@@ -98,7 +104,7 @@ public class gameView extends javax.swing.JFrame {
 		square10.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square10.setIcon(new ImageIcon(this.getClass().getResource("PieceO.png")));
+				setMove(1, 0);
 			}
 		});
 		square10.setBounds(0, 212, 174, 180);
@@ -108,7 +114,7 @@ public class gameView extends javax.swing.JFrame {
 		square11.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square11.setIcon(new ImageIcon(this.getClass().getResource("PieceX.png")));
+				setMove(1, 1);
 			}
 		});
 		square11.setBounds(214, 212, 174, 180);
@@ -118,7 +124,7 @@ public class gameView extends javax.swing.JFrame {
 		square12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square12.setIcon(new ImageIcon(this.getClass().getResource("PieceX.png")));
+				setMove(1, 2);
 			}
 		});
 		square12.setBounds(426, 212, 174, 180);
@@ -128,7 +134,7 @@ public class gameView extends javax.swing.JFrame {
 		square20.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square20.setIcon(new ImageIcon(this.getClass().getResource("PieceO.png")));
+				setMove(2, 0);
 			}
 		});
 		square20.setBounds(0, 420, 174, 180);
@@ -138,7 +144,7 @@ public class gameView extends javax.swing.JFrame {
 		square21.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square21.setIcon(new ImageIcon(this.getClass().getResource("PieceX.png")));
+				setMove(2, 1);
 			}
 		});
 		square21.setBounds(214, 420, 174, 180);
@@ -148,7 +154,7 @@ public class gameView extends javax.swing.JFrame {
 		square22.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				square22.setIcon(new ImageIcon(this.getClass().getResource("PieceO.png")));
+				setMove(2, 2);
 			}
 		});
 		square22.setBounds(426, 420, 174, 180);
@@ -159,5 +165,70 @@ public class gameView extends javax.swing.JFrame {
 		lblPlayerTurn.setForeground(Color.WHITE);
 		lblPlayerTurn.setBounds(300, 69, 238, 58);
 		contentPane.add(lblPlayerTurn);
+		
+
+		squares[0][0] = square00;
+		squares[0][1] = square01;
+		squares[0][2] = square02;
+		squares[1][0] = square10;
+		squares[1][1] = square11;
+		squares[1][2] = square12;
+		squares[2][0] = square20;
+		squares[2][1] = square21;
+		squares[2][2] = square22;
+		
 	}
+	public int[] getMove()
+	{
+		return inputMove;
+	}
+	public void setMove(int r, int c)
+	{
+		inputMove[0] = r;
+		inputMove[1] = c;
+	}
+	public void setPNG(int r, int c, String p)
+	{
+		if(r == 0 && c == 0)
+		{
+			squares[0][0].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 0 && c == 1)
+		{
+			squares[0][1].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 0 && c == 2)
+		{
+			squares[0][2].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 1 && c == 0)
+		{
+			squares[1][0].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 1 && c == 1)
+		{
+			squares[1][1].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 1 && c == 2)
+		{
+			squares[1][2].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 2 && c == 0)
+		{
+			squares[2][0].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 2 && c == 1)
+		{
+			squares[2][1].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else if(r == 2 && c == 2)
+		{
+			squares[2][2].setIcon(new ImageIcon(this.getClass().getResource(p)));
+		}
+		else
+		{
+			System.out.println("Hey buddy you set an invalid");
+		}
+	}
+	
 }
