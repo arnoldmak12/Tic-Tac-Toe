@@ -138,7 +138,20 @@ public class Board {
 			}
 			System.out.println("\n");
 		}
+	public void clearBoard()
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			for(int k = 0; k < 3; k++)
+			{
+				squares[i][k].setPiece(null);
+			}
+		}
+	}
 
 }
+
+	
+
 
 	
