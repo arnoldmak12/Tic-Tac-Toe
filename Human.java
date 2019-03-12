@@ -1,3 +1,4 @@
+
 public class Human implements Player {
 	private gameView frame;
 
