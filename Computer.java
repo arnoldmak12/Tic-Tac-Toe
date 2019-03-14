@@ -38,7 +38,7 @@ public class Computer implements Player {
     		
     	}
     	//goes here when it reaches how deep you want the computer to analyze. Changing this value can change the behavior of the computer.
-    	else if(depth == 4)
+    	else if(depth == 9)
     	{
     		if(maxOrMin)
     		{
@@ -130,6 +130,11 @@ public class Computer implements Player {
     			This way, it can check the next available move with the previous position.*/
     			currentBoard.removePiece(move[0], move[1]);
     			
+    			//if it has evaluated a move that results to a win, ignore all future cases.
+    			if(alpha >= 50 || beta <= -50)
+    			{
+    				break;
+    			}
     			//will ignore the other possible moves in this position when this is true.
     			//pruneCounts is just a variable that let me see how many times this happened with each move. The total gets printed to the console each move.
     			if(alpha >= beta)
@@ -189,4 +194,3 @@ public class Computer implements Player {
     	return spots;
     }
 }
-
