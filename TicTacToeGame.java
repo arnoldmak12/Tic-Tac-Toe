@@ -69,7 +69,7 @@ public class TicTacToeGame {
     				return;
         		}
     		}
-    		board.movePiece(new PieceO(), move[0], move[1]);    		
+    		board.movePiece(new PieceO(), move[0], move[1]);
     		frame.setPNG(move[0], move[1], "PieceO.png");
     		frame.setMove(-1, -1);
     	}
@@ -107,19 +107,19 @@ public class TicTacToeGame {
     	{
     		clear();
     		player1 = new Human(frame);
-    		player2 = new Computer(frame);
+    		player2 = new Computer(frame, board);
     	}
     	else if(menuName.equals("Computer vs. Player"))
     	{
     		clear();
-    		player1 = new Computer(frame);
+    		player1 = new Computer(frame, board);
     		player2 = new Human(frame);
     	}
     	else if(menuName.equals("Computer vs. Computer"))
     	{
     		clear();
-    		player1 = new Computer(frame);
-    		player2 = new Computer(frame);
+    		player1 = new Computer(frame, board);
+    		player2 = new Computer(frame, board);
     	}
     }
     public void clear()
