@@ -40,6 +40,11 @@ public class Board {
         squares[r][c].setPiece(piece);
     }
     
+    public void removePiece(int r, int c)
+    {
+    	squares[r][c].setPiece(null);
+    }
+    
     /**
      * Checks status of tic tac toe board
      * 
@@ -120,15 +125,18 @@ public class Board {
     	}
     	return 0;
     }    	
-
-	public void showBoard() {
+    //prints the board to the screen, and copies the board to a new board. may or may not be needed
+	public Board transferBoard() {
+		Board copy = new Board();
 			for(int i = 0; i < squares.length; i++) {
 				for(int j = 0; j < squares[0].length; j++) {
 					if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceX().getClass())) {
 						System.out.print("X\t");
+						copy.movePiece(new PieceX(),i,j);
 					}
 					else if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceO().getClass())) {
 						System.out.print("O\t");
+						copy.movePiece(new PieceO(),i,j);
 					}
 					else {
 						System.out.print("\t");
@@ -137,7 +145,102 @@ public class Board {
 				System.out.println();
 			}
 			System.out.println("\n");
+			return copy;
 		}
+	//generates a number that represents the overall position of the board. A positive number is better for O, a negative number is better for X.
+	public int evaluatePosition()
+	{
+		int sum = 0;
+		//each row
+		for(int i = 0; i < 3; i++)
+		{
+			sum += evaluateLine(i,0,i,1,i,2);
+		}
+		//each column
+		for(int k = 0; k < 3; k++)
+		{
+			sum += evaluateLine(0,k,1,k,2,k);
+		}
+		//diagonals
+		sum += evaluateLine(0,0,1,1,2,2);
+		sum += evaluateLine(0,2,1,1,2,0);
+		return sum;
+		
+	}
+	/*helper method.
+	 * Returns 0 whenever pieces of opposing types are in the same line, or if the line has no pieces in it.
+	 * Returns +/- 1 whenever only 1 piece of the same type is in the line. Other 2 positions are empty
+	 * Returns +/- 10 whenever only 2 pieces of the same type are in the line. Other position is empty
+	 * Returns +/- 100 whenever all 3 pieces in a line are of the same type.
+	 */
+	private int evaluateLine(int r1, int c1, int r2, int c2, int r3, int c3)
+	{
+		int value = 0;
+		//first box in the line
+		if(!isEmpty(r1,c1) && squares[r1][c1].getPiece().getClass().equals(new PieceO().getClass()))
+		{
+			value = 1;
+		}
+		else if(!isEmpty(r1,c1) && squares[r1][c1].getPiece().getClass().equals(new PieceX().getClass()))
+		{
+			value = -1;
+		}
+		//checks second box in line and stops if the pieces oppose each other
+		if(!isEmpty(r2,c2) && squares[r2][c2].getPiece().getClass().equals(new PieceO().getClass()))
+		{
+			if(value == -1)
+			{
+				return 0;
+			}
+			else if(value == 1)
+			{
+				value = 10;
+			}
+			else
+			{
+				value = 1;
+			}
+		}
+		else if(!isEmpty(r2,c2) && squares[r2][c2].getPiece().getClass().equals(new PieceX().getClass()))
+		{
+			if(value == 1)
+			{
+				return 0;
+			}
+			else if(value == -1)
+			{
+				value = -10;
+			}
+			else
+			{
+				value = -1;
+			}
+		}
+		//checks third box in line
+		if(!isEmpty(r3,c3) && squares[r3][c3].getPiece().getClass().equals(new PieceO().getClass()))
+		{
+			if(value < 0)
+			{
+				return 0;
+			}
+			else if(value > 0)
+			{
+				return value*10;
+			}
+		}
+		else if(!isEmpty(r3,c3) && squares[r3][c3].getPiece().getClass().equals(new PieceX().getClass()))
+		{
+			if(value > 0)
+			{
+				return 0;
+			}
+			else if(value < 0)
+			{
+				return value*10;
+			}
+		}
+		return value;
+	}
 	public void clearBoard()
 	{
 		for(int i = 0; i < 3; i++)
@@ -150,8 +253,5 @@ public class Board {
 	}
 
 }
-
-	
-
 
 	
