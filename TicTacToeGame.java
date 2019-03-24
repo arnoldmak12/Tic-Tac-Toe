@@ -1,32 +1,35 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TicTacToeGame {
 	private Board board;
-	private Map<Player, List<int[]>> moveHistory;
+	private Map<Player, ArrayList<int[]>> moveHistory;
 	private gameView frame;
 	private Player player1;
 	private Player player2;
+	private ArrayList<int[]> list1;
+	private ArrayList<int[]> list2;
 	
 
     public TicTacToeGame() {
     	board = new Board();
-    	moveHistory = new HashMap<Player, List<int[]>>();
+    	moveHistory = new HashMap<Player, ArrayList<int[]>>();
     	frame = new gameView(this);
     	frame.setVisible(true);
     	player1 = new Human(frame);
     	player2 = new Human(frame);
+    	list1 = new ArrayList<int[]>();
+    	list2 = new ArrayList<int[]>();
+    	moveHistory.put(player1, list1);
+    	moveHistory.put(player2, list2);
     	startGame();
         
     }
-
-    /*private Player annouceWinner() {
-        return new Player();
-    }*/
-    
-
     public void startGame() {
+    	list1.clear();
+    	list2.clear();
     	int[] move = new int[2];
 		frame.setMove(-1,  -1);
     	
@@ -50,6 +53,8 @@ public class TicTacToeGame {
     		}
     		board.movePiece(new PieceX(), move[0], move[1]); 		
     		frame.setPNG(move[0], move[1], "PieceX.png");
+    		list1.add(new int[] {move[0], move[1]});
+    		moveHistory.replace(player1, list1);
     		frame.setMove(-1, -1);
     		if(!board.checkResult().equals("Not Done")) {
     			break;
@@ -73,11 +78,13 @@ public class TicTacToeGame {
     		}
     		board.movePiece(new PieceO(), move[0], move[1]);
     		frame.setPNG(move[0], move[1], "PieceO.png");
+    		list2.add(new int[] {move[0], move[1]});
+    		moveHistory.replace(player2, list2);
     		frame.setMove(-1, -1);
     	}
     	if(board.checkResult().equals("Tie"))
 		{
-    		frame.setLabel("Tie");
+    		frame.setLabel("Tie!");
 		}
     	else if(board.checkResult().equals("X"))
 		{
@@ -87,6 +94,15 @@ public class TicTacToeGame {
 		{
     		frame.setLabel("Player 2 Wins!");
 		}
+    	System.out.println("\n\nPlayer 1 Move History:\tPlayer 2 Move History:");
+    	for(int i = 0; i < moveHistory.get(player1).size(); i++)
+    	{
+    		System.out.print("\t" + moveHistory.get(player1).get(i)[0] + "," + moveHistory.get(player1).get(i)[1]);
+    		if(i < moveHistory.get(player2).size()) {
+    			System.out.println("\t\t\t" + moveHistory.get(player2).get(i)[0] + "," + moveHistory.get(player2).get(i)[1]);
+    		}
+    	}
+    	System.out.println("\n\n" + board.checkResult() + "\n");
     	boolean waiting = true;
     	
     	while(waiting)
@@ -98,14 +114,6 @@ public class TicTacToeGame {
     		}
     	}
     	startGame();
-    	/*if(board.checkResult().equals("O"))
-    	{
-    		frame.setWinner("winO.png");
-    	}
-    	else if(board.checkResult().equals("X"))
-    	{
-    		frame.setWinner("winX.png");
-    	}*/
     }
     public void setPlayers(String menuName)
     {
@@ -114,24 +122,36 @@ public class TicTacToeGame {
     		clear();
     		player1 = new Human(frame);
     		player2 = new Human(frame);
+    		moveHistory.clear();
+    		moveHistory.put(player1, list1);
+        	moveHistory.put(player2, list2);
     	}
     	else if(menuName.equals("Player vs. Computer"))
     	{
     		clear();
     		player1 = new Human(frame);
     		player2 = new Computer(frame, board);
+    		moveHistory.clear();
+    		moveHistory.put(player1, list1);
+        	moveHistory.put(player2, list2);
     	}
     	else if(menuName.equals("Computer vs. Player"))
     	{
     		clear();
     		player1 = new Computer(frame, board);
     		player2 = new Human(frame);
+    		moveHistory.clear();
+    		moveHistory.put(player1, list1);
+        	moveHistory.put(player2, list2);
     	}
     	else if(menuName.equals("Computer vs. Computer"))
     	{
     		clear();
     		player1 = new Computer(frame, board);
     		player2 = new Computer(frame, board);
+    		moveHistory.clear();
+    		moveHistory.put(player1, list1);
+        	moveHistory.put(player2, list2);
     	}
     }
     public void clear()
