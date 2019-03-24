@@ -33,6 +33,7 @@ public class TicTacToeGame {
     	while(board.checkResult().equals("Not Done")) {
     		
     		//Player1's Turn
+    		frame.setLabel("Player 1's Turn");
     		move = player1.makeMove();
     		if(move[0] == 3 && move[1] == 3)
     		{
@@ -55,6 +56,7 @@ public class TicTacToeGame {
     		}
     		
     		//Player2's Turn
+    		frame.setLabel("Player 2's Turn");
     		move = player2.makeMove();
     		if(move[0] == 3 && move[1] == 3)
     		{
@@ -73,8 +75,18 @@ public class TicTacToeGame {
     		frame.setPNG(move[0], move[1], "PieceO.png");
     		frame.setMove(-1, -1);
     	}
-    	
-    	System.out.println(board.checkResult());
+    	if(board.checkResult().equals("Tie"))
+		{
+    		frame.setLabel("Tie");
+		}
+    	else if(board.checkResult().equals("X"))
+		{
+    		frame.setLabel("Player 1 Wins!");
+		}
+    	else if(board.checkResult().equals("O"))
+		{
+    		frame.setLabel("Player 2 Wins!");
+		}
     	boolean waiting = true;
     	
     	while(waiting)
