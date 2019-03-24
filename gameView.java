@@ -33,6 +33,7 @@ public class gameView extends javax.swing.JFrame {
 	private JLabel[][] squares;
 	private JPanel panel;
 	private TicTacToeGame game;
+	private JLabel lblGameState;
 
 	/**
 	 * Launch the application.
@@ -54,6 +55,8 @@ public class gameView extends javax.swing.JFrame {
 	 * Create the frame.
 	 */
 	public gameView(TicTacToeGame game1) {
+		lblGameState = new JLabel();
+		
 		setTitle("Tic-Tac-Toe");
 		setDefaultCloseOperation(gameView.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -236,11 +239,10 @@ public class gameView extends javax.swing.JFrame {
 		square22.setBounds(426, 420, 174, 180);
 		panel.add(square22);
 		
-		JLabel lblPlayerTurn = new JLabel("Player Turn:");
-		lblPlayerTurn.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblPlayerTurn.setForeground(Color.WHITE);
-		lblPlayerTurn.setBounds(300, 69, 238, 58);
-		contentPane.add(lblPlayerTurn);
+		lblGameState.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblGameState.setForeground(Color.WHITE);
+		lblGameState.setBounds(300, 69, 238, 58);
+		contentPane.add(lblGameState);
 		
 
 		squares[0][0] = square00;
@@ -253,6 +255,9 @@ public class gameView extends javax.swing.JFrame {
 		squares[2][1] = square21;
 		squares[2][2] = square22;
 		
+	}
+	public void setLabel(String s) {
+		lblGameState.setText(s);
 	}
 	public int[] getMove()
 	{
