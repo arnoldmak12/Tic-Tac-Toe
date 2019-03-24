@@ -28,8 +28,6 @@ public class TicTacToeGame {
         
     }
     public void startGame() {
-    	list1.clear();
-    	list2.clear();
     	int[] move = new int[2];
 		frame.setMove(-1,  -1);
     	
@@ -123,6 +121,8 @@ public class TicTacToeGame {
     		player1 = new Human(frame);
     		player2 = new Human(frame);
     		moveHistory.clear();
+    		list1.clear();
+        	list2.clear();
     		moveHistory.put(player1, list1);
         	moveHistory.put(player2, list2);
     	}
@@ -132,6 +132,8 @@ public class TicTacToeGame {
     		player1 = new Human(frame);
     		player2 = new Computer(frame, board);
     		moveHistory.clear();
+    		list1.clear();
+        	list2.clear();
     		moveHistory.put(player1, list1);
         	moveHistory.put(player2, list2);
     	}
@@ -141,6 +143,8 @@ public class TicTacToeGame {
     		player1 = new Computer(frame, board);
     		player2 = new Human(frame);
     		moveHistory.clear();
+    		list1.clear();
+        	list2.clear();
     		moveHistory.put(player1, list1);
         	moveHistory.put(player2, list2);
     	}
@@ -150,6 +154,8 @@ public class TicTacToeGame {
     		player1 = new Computer(frame, board);
     		player2 = new Computer(frame, board);
     		moveHistory.clear();
+    		list1.clear();
+        	list2.clear();
     		moveHistory.put(player1, list1);
         	moveHistory.put(player2, list2);
     	}
