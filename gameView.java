@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -18,6 +20,9 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Map;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -25,6 +30,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 public class gameView extends javax.swing.JFrame {
 
@@ -34,6 +41,7 @@ public class gameView extends javax.swing.JFrame {
 	private JPanel panel;
 	private TicTacToeGame game;
 	private JLabel lblGameState;
+	private JTextArea textPane;
 
 	/**
 	 * Launch the application.
@@ -255,6 +263,20 @@ public class gameView extends javax.swing.JFrame {
 		squares[2][1] = square21;
 		squares[2][2] = square22;
 		
+		textPane = new JTextArea();
+		textPane.setEditable(false);
+		textPane.setBorder(null);
+		//textPane.setHorizontalAlignment(SwingConstants.CENTER);
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textPane.setForeground(Color.WHITE);
+		textPane.setBackground(Color.BLACK);
+		textPane.setBounds(912, 140, 258, 574);
+		contentPane.add(textPane);
+	}
+	
+	public void setMoveHistory(String s) {
+		System.out.println(s);
+		textPane.setText(s);
 	}
 	public void setLabel(String s) {
 		lblGameState.setText(s);
@@ -321,5 +343,4 @@ public class gameView extends javax.swing.JFrame {
 			}
 		}
 	}
-
 }
