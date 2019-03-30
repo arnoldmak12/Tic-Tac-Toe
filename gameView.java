@@ -13,6 +13,9 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class is in charge of displaying the graphics to the user interface
+ */
 public class gameView extends javax.swing.JFrame {
 
 	private JPanel contentPane;
