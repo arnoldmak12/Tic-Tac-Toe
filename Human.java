@@ -1,4 +1,3 @@
-
 public class Human implements Player {
 	private gameView frame;
 
@@ -7,6 +6,11 @@ public class Human implements Player {
     	
     }
     
+    /**
+     * Gets the slected move from the user
+     *
+     * @return int[] of size 2, index 0 for the row and index 1 for the column selected by user
+     */
     public int[] makeMove() {
     	boolean waiting = true;
     	int[] move = new int[2];
