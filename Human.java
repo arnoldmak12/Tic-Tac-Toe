@@ -1,3 +1,6 @@
+/**
+ * How the user will interact with the board
+ */
 public class Human implements Player {
 	private gameView frame;
 
