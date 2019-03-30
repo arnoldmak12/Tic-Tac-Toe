@@ -1,21 +1,29 @@
 import java.util.ArrayList;
 
+//Computer is a player that automatically makes moves based on AI
 public class Computer implements Player {
 	private gameView frame;
 	private Board board;
-	private int pruneCounts;
 
     public Computer(gameView frame1, Board board1) {
     	frame = frame1;
     	board = board1;
-    	pruneCounts = 0;
 
     }
-    /*depth represents how many moves deep the computer calculates.
-     * currentBoard is, well,the current board position that the computer is evaluating
-     * maxOrMin is true when it is a maximizing node, false when its a minimizing node. Will switch with each method call.
-     * alpha is the maximizer, which is the best possible value for O
-     * beta is the minimizer, which is the best possible value for X
+    /**
+     * Algorithm to determine the best possible move for the computer.
+     * 
+     * @param depth
+     * Represents how many moves deep the computer is currently calculating.
+     * @param currentBoard
+     * The current board position that the computer is analyzing.
+     * @param maxOrMin 
+     * True when it is a maximizing node, false when its a minimizing node. Will switch with each method call.
+     * @param alpha 
+     * The maximizer, which represents the best possible value for O
+     * @param beta 
+     * The minimizer, which is the best possible value for X
+     * @return An integer array with 3 elements. First element is the score of that move. Second element is the row of that move. Third element is the column of that move.
      */
     public int[] minimax(int depth, Board currentBoard, boolean maxOrMin, int alpha, int beta)
     {
@@ -49,31 +57,20 @@ public class Computer implements Player {
     			beta = currentBoard.evaluatePosition();
     		}
     	}
-    	//when game isnt over and depth hasnt been reached, evaluate the next possible move
+    	//when game isn't over and depth hasn't been reached, evaluate the next possible move.
     	else
     	{
     		//goes through every possible move
     		for(int[] move : emptySpots)
     		{
-    			//uncomment this section when you want to see what the computer is thinking throughout the process.
-    			
-    			/*currentBoard.transferBoard();
-    			System.out.println(depth + " " + move[0] + " " + move[1] + " " + alpha + " " + beta);
-    			try {
-    				Thread.sleep(100);
-    			} catch (InterruptedException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}*/
-    			
-    			//if there are an even number of empty spots left, then its O's turn. if its an odd number, its X's turn.
+    			//if there are an even number of empty spots left, then its O's turn. If its an odd number, its X's turn.
     			if(emptySpots.size()%2 == 0)
     			{
     				currentBoard.movePiece(new PieceO(), move[0], move[1]);
     				//here if maximizing
     				if(maxOrMin)
     				{
-    					/*calls it again and adds one to depth since it will calulate the next possible moves in this position.
+    					/*calls it again and adds one to depth since it will calculate the next possible moves in this position.
     					maxOrMin gets flipped because the maximizer and minimizer nodes swap when you go further down the tree*/
     					score = minimax(depth+=1, currentBoard, !maxOrMin, alpha, beta)[0];
     					depth-=1;
@@ -136,10 +133,8 @@ public class Computer implements Player {
     				break;
     			}
     			//will ignore the other possible moves in this position when this is true.
-    			//pruneCounts is just a variable that let me see how many times this happened with each move. The total gets printed to the console each move.
     			if(alpha >= beta)
     			{
-    				pruneCounts+=1;
     				break;
     			}
     			
@@ -153,10 +148,13 @@ public class Computer implements Player {
     	return new int[] {beta, r, c};
     	
     }
-    
+    /**
+     * Method for determining the move that the computer will make
+     * 
+     * @return An integer array with 2 elements. First element is the row of the move. Second element is the column of the move.
+     */
     public int[] makeMove()
     {
-    	//i dont really know if this is needed or not. you might be able to just call minimax with board
     	Board temp = board.transferBoard();
     	int move[];
     	//if computer is O, it wants to maximize the value. a positive score = better for O
@@ -170,14 +168,16 @@ public class Computer implements Player {
     		move = minimax(0,temp,false, Integer.MIN_VALUE, Integer.MAX_VALUE);
     	}
     	int[] result = new int[2];
-    	//prints number of times alpha beta pruning was used to the console and resets pruneCounts
-    	System.out.println(pruneCounts);
-    	pruneCounts = 0;
     	result[0] = move[1];
     	result[1] = move[2];
     	return result;
     }
-    //creates an arraylist of every empty spot on the given board
+    /**
+     * Method for getting the empty squares of a given board.
+     * @param currentBoard
+     * Represents the current board being checked.
+     * @return An array list of every square on the current board that is empty.
+     */
     public ArrayList<int[]> getAvailableSpots(Board currentBoard)
     {
     	ArrayList<int[]> spots = new ArrayList<int[]>();
