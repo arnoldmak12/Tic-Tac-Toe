@@ -30,6 +30,7 @@ public class TicTacToeGame {
     public void startGame() {
     	int[] move = new int[2];
 		frame.setMove(-1,  -1);
+		dispMoveHistory();
     	
     	while(board.checkResult().equals("Not Done")) {
     		
@@ -53,6 +54,7 @@ public class TicTacToeGame {
     		frame.setPNG(move[0], move[1], "PieceX.png");
     		list1.add(new int[] {move[0], move[1]});
     		moveHistory.replace(player1, list1);
+    		dispMoveHistory();
     		frame.setMove(-1, -1);
     		if(!board.checkResult().equals("Not Done")) {
     			break;
@@ -78,6 +80,7 @@ public class TicTacToeGame {
     		frame.setPNG(move[0], move[1], "PieceO.png");
     		list2.add(new int[] {move[0], move[1]});
     		moveHistory.replace(player2, list2);
+    		dispMoveHistory();
     		frame.setMove(-1, -1);
     	}
     	if(board.checkResult().equals("Tie"))
@@ -92,15 +95,9 @@ public class TicTacToeGame {
 		{
     		frame.setLabel("Player 2 Wins!");
 		}
-    	System.out.println("\n\nPlayer 1 Move History:\tPlayer 2 Move History:");
-    	for(int i = 0; i < moveHistory.get(player1).size(); i++)
-    	{
-    		System.out.print("\t" + moveHistory.get(player1).get(i)[0] + "," + moveHistory.get(player1).get(i)[1]);
-    		if(i < moveHistory.get(player2).size()) {
-    			System.out.println("\t\t\t" + moveHistory.get(player2).get(i)[0] + "," + moveHistory.get(player2).get(i)[1]);
-    		}
-    	}
-    	System.out.println("\n\n" + board.checkResult() + "\n");
+    	
+    	
+    	//System.out.println("\n\n" + board.checkResult() + "\n");
     	boolean waiting = true;
     	
     	while(waiting)
@@ -112,6 +109,22 @@ public class TicTacToeGame {
     		}
     	}
     	startGame();
+    }
+    
+    public void dispMoveHistory()
+    {    
+    	String s = new String();
+    	s = "\n\n    Move History";
+    	s += "\n\n X:\t O:\n";
+    	for(int i = 0; i < moveHistory.get(player1).size(); i++)
+    	{
+    		s += (moveHistory.get(player1).get(i)[0] + "," + moveHistory.get(player1).get(i)[1]);
+    		if(i < moveHistory.get(player2).size()) {
+    			s += ("\t" + moveHistory.get(player2).get(i)[0] + "," + moveHistory.get(player2).get(i)[1]);
+    			s += "\n";
+    		}
+    	}
+    	frame.setMoveHistory(s);
     }
     public void setPlayers(String menuName)
     {
