@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-//all the logic the controls the flow of the game
+//all the logic that controls the flow of the game
 public class TicTacToeGame {
 	private Board board;
 	private Map<Player, ArrayList<int[]>> moveHistory;
