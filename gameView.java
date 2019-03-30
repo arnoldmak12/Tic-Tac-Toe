@@ -1,37 +1,17 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Map;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.MenuKeyListener;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
 
 public class gameView extends javax.swing.JFrame {
 
@@ -41,26 +21,10 @@ public class gameView extends javax.swing.JFrame {
 	private JPanel panel;
 	private TicTacToeGame game;
 	private JLabel lblGameState;
-	private JTextArea textPane;
+	private JTextArea textArea;
 
 	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					gameView frame = new gameView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the frame.
+	 * Create the frame
 	 */
 	public gameView(TicTacToeGame game1) {
 		lblGameState = new JLabel();
@@ -71,10 +35,16 @@ public class gameView extends javax.swing.JFrame {
 		
 		game = game1;
 		
+		/**
+		 * Create Menu Bar
+		 */	
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.BLACK);
 		setJMenuBar(menuBar);
 		
+		/**
+		 * Create Menu
+		 */	
 		JMenu mnNew = new JMenu("New Game");
 		mnNew.addMouseListener(new MouseAdapter() {
 			@Override
@@ -90,6 +60,9 @@ public class gameView extends javax.swing.JFrame {
 		mnNew.setBackground(Color.BLACK);
 		menuBar.add(mnNew);
 		
+		/**
+		 * Create Menu Items
+		 */		
 		JMenuItem mntmPlayerVsPlayer = new JMenuItem("Player vs. Player");
 		mntmPlayerVsPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +73,7 @@ public class gameView extends javax.swing.JFrame {
 		mntmPlayerVsPlayer.setForeground(Color.WHITE);
 		mntmPlayerVsPlayer.setBackground(Color.BLACK);
 		mnNew.add(mntmPlayerVsPlayer);
-		
+				
 		JMenuItem mntmPlayerVsComputer = new JMenuItem("Player vs. Computer");
 		mntmPlayerVsComputer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -151,12 +124,18 @@ public class gameView extends javax.swing.JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		/**
+		 * Create Tic-Tac-Toe Grid 
+		 */	
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("Tic-Tac-Toe Grid.png")));
 		lblNewLabel.setBounds(0, 0, 600, 600);
 		panel.add(lblNewLabel);
 		
+		/**
+		 * Create all the squares that correspond to the spots on the grid 
+		 */	
 		JLabel square00 = new JLabel("");
 		square00.addMouseListener(new MouseAdapter() {
 			@Override
@@ -246,7 +225,7 @@ public class gameView extends javax.swing.JFrame {
 		});
 		square22.setBounds(426, 420, 174, 180);
 		panel.add(square22);
-		
+			
 		lblGameState.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblGameState.setForeground(Color.WHITE);
 		lblGameState.setBounds(300, 69, 238, 58);
@@ -263,33 +242,50 @@ public class gameView extends javax.swing.JFrame {
 		squares[2][1] = square21;
 		squares[2][2] = square22;
 		
-		textPane = new JTextArea();
-		textPane.setEditable(false);
-		textPane.setBorder(null);
-		//textPane.setHorizontalAlignment(SwingConstants.CENTER);
-		textPane.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textPane.setForeground(Color.WHITE);
-		textPane.setBackground(Color.BLACK);
-		textPane.setBounds(912, 140, 258, 574);
-		contentPane.add(textPane);
+		textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBorder(null);
+		textArea.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textArea.setForeground(Color.WHITE);
+		textArea.setBackground(Color.BLACK);
+		textArea.setBounds(912, 140, 258, 574);
+		contentPane.add(textArea);
 	}
 	
+	/**
+	 * Set the text of the text area to the move history
+	 */	
 	public void setMoveHistory(String s) {
-		System.out.println(s);
-		textPane.setText(s);
+		textArea.setText(s);
 	}
+	
+	/**
+	 * Set the text of the label to the state of the game
+	 */	
 	public void setLabel(String s) {
 		lblGameState.setText(s);
 	}
+	
+	/**
+	 * Receives the move from the user's input
+	 */	
 	public int[] getMove()
 	{
 		return inputMove;
 	}
+	
+	/**
+	 * Sets the move from what the user inputed
+	 */
 	public void setMove(int r, int c)
 	{
 		inputMove[0] = r;
 		inputMove[1] = c;
 	}
+	
+	/**
+	 * Sets in place the png of the selected square on the grid
+	 */
 	public void setPNG(int r, int c, String p)
 	{
 		if(r == 0 && c == 0)
@@ -328,11 +324,11 @@ public class gameView extends javax.swing.JFrame {
 		{
 			squares[2][2].setIcon(new ImageIcon(this.getClass().getResource(p)));
 		}
-		else
-		{
-			System.out.println("Hey buddy you set an invalid");
-		}
 	}
+	
+	/**
+	 * Clears the entire grid on the screen
+	 */
 	public void clearScreen()
 	{
 		for(int i = 0; i < 3; i++)
