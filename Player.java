@@ -1,4 +1,4 @@
+//Interface for objects that make moves on the board.
 interface Player {
-	String name = "";
     public int[] makeMove();
 }
