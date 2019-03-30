@@ -1,3 +1,4 @@
+//Board is a background representation of the Tic Tac Toe board
 public class Board {
 
     private Square[][] squares;
@@ -17,9 +18,9 @@ public class Board {
      * Checks if square is empty or not
      *
      * @param r
-     *            either 0, 1, or 2. Represents the row of the 2D array.
+     *            Either 0, 1, or 2. Represents the row of the 2D array.
      * @param c
-     *            either 0, 1, or 2. Represents the column of the 2D array.
+     *            Either 0, 1, or 2. Represents the column of the 2D array.
      * @return true for empty square, false for square with piece
      */
     public boolean isEmpty(int r, int c) {
@@ -30,16 +31,23 @@ public class Board {
      * Places piece with the given type at the given square.
      *
      * @param piece
-     *            will either be piece x or piece o.
+     *            Will either be piece x or piece o.
      * @param r
-     *            either 0, 1, or 2. Represents the row of the 2D array.
+     *            Either 0, 1, or 2. Represents the row of the 2D array.
      * @param c
-     *            either 0, 1, or 2. Represents the column of the 2D array
+     *            Either 0, 1, or 2. Represents the column of the 2D array
+     * 
      */
     public void movePiece(Piece piece, int r, int c) {
         squares[r][c].setPiece(piece);
     }
-    
+    /**
+     * Removes the piece at the given board location
+     * @param r
+     * The row of the square.
+     * @param c
+     * The column of the square.
+     */
     public void removePiece(int r, int c)
     {
     	squares[r][c].setPiece(null);
@@ -71,7 +79,7 @@ public class Board {
     }
     
     /**
-     * Checks status of tic tac toe board
+     * Calculates and quantifies the status of tic tac toe board.
      * 
      * @return int that corresponds to status on the board. 0 is not done, 1 is tie, 3 is O wins, and 6 is X wins.
      */
@@ -125,29 +133,30 @@ public class Board {
     	}
     	return 0;
     }    	
-    //prints the board to the screen, and copies the board to a new board. may or may not be needed
+    /**
+     * Transfers the current game board to a copy.
+     * 
+     * @return a copy of the actual board.
+     */
 	public Board transferBoard() {
 		Board copy = new Board();
 			for(int i = 0; i < squares.length; i++) {
 				for(int j = 0; j < squares[0].length; j++) {
 					if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceX().getClass())) {
-						System.out.print("X\t");
 						copy.movePiece(new PieceX(),i,j);
 					}
 					else if(!isEmpty(i,j) && squares[i][j].getPiece().getClass().equals(new PieceO().getClass())) {
-						System.out.print("O\t");
 						copy.movePiece(new PieceO(),i,j);
 					}
-					else {
-						System.out.print("\t");
-					}
 				}
-				System.out.println();
 			}
-			System.out.println("\n");
 			return copy;
 		}
-	//generates a number that represents the overall position of the board. A positive number is better for O, a negative number is better for X.
+	/**
+	 * Generates a number that represents the overall position of the board. A positive number is better for O, a negative number is better for X.
+	 * 
+	 * @return value representing the overall position of the board.
+	 */
 	public int evaluatePosition()
 	{
 		int sum = 0;
@@ -167,10 +176,24 @@ public class Board {
 		return sum;
 		
 	}
-	/*helper method.
-	 * Returns 0 whenever pieces of opposing types are in the same line, or if the line has no pieces in it.
-	 * Returns +/- 1 whenever only 1 piece of the same type is in the line. Other 2 positions are empty
-	 * Returns +/- 10 whenever only 2 pieces of the same type are in the line. Other position is empty
+	/**
+	 * Helper method for evaluate. Evaluates and quantifies the board position for a given line.
+	 * 
+	 * @param r1
+	 * Row of the first square.
+	 * @param c1
+	 * Column of the first square.
+	 * @param r2
+	 * Row of the second square.
+	 * @param c2
+	 * Column of the second square.
+	 * @param r3
+	 * Row of the third square.
+	 * @param c3
+	 * Column of the third square.
+	 * @return Returns 0 whenever pieces of opposing types are in the same line, or if the line has no pieces in it.
+	 * Returns +/- 1 whenever only 1 piece of the same type is in the line and other 2 positions are empty.
+	 * Returns +/- 10 whenever only 2 pieces of the same type are in the line and other position is empty.
 	 * Returns +/- 100 whenever all 3 pieces in a line are of the same type.
 	 */
 	private int evaluateLine(int r1, int c1, int r2, int c2, int r3, int c3)
@@ -241,6 +264,9 @@ public class Board {
 		}
 		return value;
 	}
+	/**
+	 * Clears and resets the board to an empty board.
+	 */
 	public void clearBoard()
 	{
 		for(int i = 0; i < 3; i++)
